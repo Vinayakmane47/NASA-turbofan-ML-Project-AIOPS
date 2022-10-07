@@ -1,0 +1,42 @@
+training_pipeline_config:
+  pipeline_name: Turbofan
+  artifact_dir: artifact 
+
+data_ingestion_config:
+
+  download_url_train : "https://raw.githubusercontent.com/Vinayakmane47/NASA-turbofan-ML-Project/main/Proccessed_data/train_FD001.csv"
+  download_url_test : "https://raw.githubusercontent.com/Vinayakmane47/NASA-turbofan-ML-Project/main/Proccessed_data/test_FD001.csv"
+  ingested_dir: ingested_data
+  ingested_train_dir: train
+  ingested_test_dir: test 
+
+
+
+data_validation_config:
+  schema_dir: config
+  schema_file_name: schema.yaml
+  report_file_name: report.json
+  report_page_file_name: report.html
+
+data_transformation_config:
+  add_bedroom_per_room: true
+  transformed_dir: transformed_data
+  transformed_train_dir: train
+  transformed_test_dir: test
+  preprocessing_dir: preprocessed
+  preprocessed_object_file_name: preprocessed.pkl
+  
+model_trainer_config:
+  trained_model_dir: trained_model
+  model_file_name: model.pkl
+  base_accuracy: 0.6
+  model_config_dir: config
+  model_config_file_name: model.yaml
+
+
+model_evaluation_config:
+  model_evaluation_file_name: model_evaluation.yaml
+  
+
+model_pusher_config:
+  model_export_dir: saved_models

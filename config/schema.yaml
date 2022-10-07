@@ -1,0 +1,41 @@
+columns: 
+  engineNumber: int
+  cycleNumber: int 
+  sensor2 : float 
+  sensor3 : float 
+  sensor4 : float 
+  sensor7 : float 
+  sensor8 : float 
+  sensor9 : float 
+  sensor11 : float
+  sensor12 : float 
+  sensor13 : float 
+  sensor14 : float 
+  sensor15 : float 
+  sensor17 : float 
+  sensor20 : float 
+  sensor21 : float 
+  RUL : int 
+
+numerical_columns: 
+  - engineNumber
+  - cycleNumber
+  - sensor2 
+  - sensor3 
+  - sensor4 
+  - sensor7 
+  - sensor8 
+  - sensor9 
+  - sensor11 
+  - sensor12 
+  - sensor13 
+  - sensor14 
+  - sensor15 
+  - sensor17 
+  - sensor20 
+  - sensor21 
+
+target_column:
+  - RUL
+  
+
