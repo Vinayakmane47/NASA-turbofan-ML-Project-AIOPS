@@ -19,12 +19,13 @@ data_validation_config:
   report_page_file_name: report.html
 
 data_transformation_config:
-  add_bedroom_per_room: true
+  
   transformed_dir: transformed_data
   transformed_train_dir: train
   transformed_test_dir: test
   preprocessing_dir: preprocessed
-  preprocessed_object_file_name: preprocessed.pkl
+  preprocessed_object_file_name: svr.pkl
+  
   
 model_trainer_config:
   trained_model_dir: trained_model
