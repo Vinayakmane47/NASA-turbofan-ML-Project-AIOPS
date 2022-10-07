@@ -5,6 +5,7 @@ __pycache__/
 
 # C extensions
 *.so
+Turbofan/artifact
 
 # Distribution / packaging
 .Python
@@ -27,7 +28,8 @@ share/python-wheels/
 *.egg
 MANIFEST
 dataset/
-Turbofan/artifact/
+
+
 
 
 # PyInstaller
