@@ -38,7 +38,7 @@ class DataTransformation:
 
             schema_file_path = self.data_validation_artifact.schema_file_path 
 
-            logging.info(f"Loading dataset as train and test") 
+            logging.info(f"Loading dataset as train and test dataframe") 
 
             train_df = load_data(file_path=train_file_path , schema_file_path=schema_file_path)
             test_df = load_data(file_path=test_file_path , schema_file_path=schema_file_path)
@@ -118,5 +118,9 @@ class DataTransformation:
             return data_transformation_artifact
         except Exception as e : 
             raise TurboException(e,sys)
+
+
+    def __del__(self):
+        logging.info(f"{'>>'*30}Data Transformation log completed.{'<<'*30} \n\n")
 
 

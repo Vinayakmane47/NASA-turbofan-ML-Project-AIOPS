@@ -87,6 +87,7 @@ def load_data(file_path: str, schema_file_path: str) -> pd.DataFrame:
         for column in dataframe.columns:
             if column in list(schema.keys()):
                 dataframe[column].astype(schema[column]) # for dtype casting 
+                
             else:
                 error_messgae = f"{error_messgae} \nColumn: [{column}] is not in the schema."
         if len(error_messgae) > 0:
