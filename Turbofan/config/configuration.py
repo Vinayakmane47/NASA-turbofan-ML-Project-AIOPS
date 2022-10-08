@@ -94,14 +94,46 @@ class Configuration :
 
     def get_model_trainer_config(self) -> ModelTrainerConfig: 
         try : 
-            pass 
+            artifact_dir = self.training_pipeline_config.artifact_dir 
+            model_trainer_config = self.config_info[MODEL_TRAINER_CONFIG_KEY]
+
+            trained_model_dir = os.path.join(artifact_dir , 
+                                    MODEL_TRAINER_ARTIFACT_DIR , 
+                                            self.time_stamp , 
+                                            model_trainer_config[MODEL_TRAINER_TRAINED_MODEL_DIR_KEY])
+
+            trained_model_file_path = os.path.join(trained_model_dir ,
+                                        model_trainer_config[MODEL_TRAINER_TRAINED_MODEL_FILE_NAME_KEY])
+            
+            base_accuracy = model_trainer_config[MODEL_TRAINER_BASE_ACCURACY_KEY]
+
+            model_config_file_path = os.path.join(ROOT_DIR , 
+            model_trainer_config[MODEL_TRAINER_MODEL_CONFIG_DIR_KEY], 
+            model_trainer_config[MODEL_TRAINER_MODEL_CONFIG_FILE_NAME_KEY])
+
+
+            model_trainer_config = ModelTrainerConfig(trained_model_file_path=trained_model_file_path , 
+                                            base_accuracy=base_accuracy , 
+                                            model_config_file_path=model_config_file_path) 
+            return model_trainer_config
         except Exception as e : 
             raise TurboException(e,sys)
 
 
     def get_model_evaluation_config(self) -> ModelEvaluationConfig: 
         try : 
-            pass 
+            model_evaluation_config = self.config_info[MODEL_EVALUATION_CONFIG_KEY]
+            artifact_dir = self.training_pipeline_config.artifact_dir 
+           
+            model_evaluation_file_path = os.path.join(artifact_dir , 
+                            self.time_stamp , model_evaluation_config[MODEL_EVALUATION_ARTIFACT_DIR]  , 
+                            model_evaluation_config[MODEL_EVALUATION_FILE_NAME_KEY]
+                            )
+
+            model_evaluation_config = ModelEvaluationConfig(model_evaluation_file_path=model_evaluation_file_path ,
+                                            time_stamp=self.time_stamp 
+                                            ) 
+            return model_evaluation_config
         except Exception as e : 
             raise TurboException(e,sys)
 

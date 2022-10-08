@@ -10,6 +10,26 @@ from Turbofan.util.util import *
 from sklearn.preprocessing import StandardScaler , PolynomialFeatures 
 from sklearn.feature_selection import SelectFromModel 
 from sklearn.svm import SVR
+from sklearn.pipeline import Pipeline 
+from sklearn.base import BaseEstimator,TransformerMixin
+
+
+
+
+
+class CustomTransformer(BaseEstimator,TransformerMixin): 
+    
+    def __init__(self,columns): 
+        self.columns = columns 
+         
+    def fit(self,X,y=None): 
+        return self 
+    
+    def transform(self,X,y=None):
+        X = X[:,self.columns]
+        
+        return X 
+
 
 
 class DataTransformation: 
@@ -31,6 +51,35 @@ class DataTransformation:
             raise TurboException(e,sys)
 
 
+    def get_important_features(self,x_train:pd.DataFrame,y_train): 
+        try: 
+            scalar = StandardScaler()
+            x_train_arr = scalar.fit_transform(x_train)
+            poly = PolynomialFeatures(2)
+            x_train_arr = poly.fit_transform(x_train_arr)
+            svr = SVR(kernel='linear')
+            svr.fit(x_train_arr,y_train)
+            select_features = SelectFromModel(svr, threshold='mean', prefit=True)
+            columns_imp = select_features.get_support()
+            return columns_imp
+        except Exception as e : 
+            raise TurboException(e,sys)
+
+    def get_transformation_obj(self,columns)->Pipeline: 
+
+        try: 
+            logging.info("Getting Transformation Obj")
+            pipeline = Pipeline(steps=[
+            ('scalar',StandardScaler()), 
+            ('poly',PolynomialFeatures(2)), 
+            ('custom',CustomTransformer(columns=columns))
+            ]) 
+
+            return pipeline
+        except Exception as e : 
+            raise TurboException(e,sys)
+
+
     def initiate_data_transformation(self): 
         try : 
             train_file_path = self.data_ingestion_artifact.train_file_path 
@@ -47,14 +96,19 @@ class DataTransformation:
             target_column = schema[TARGET_COLUMN_KEY]
 
             logging.info(f"splitting training and test dataset into x and y features i.e. dependent and independent")
-            x_train_df = train_df.drop(columns=[target_column],axis=1)
-            y_train = train_df[target_column]
+            x_train_df = train_df.drop(columns=['RUL'],axis=1)
+            y_train = train_df['RUL']
 
-            x_test_df = test_df.drop(columns=[target_column],axis=1)
-            y_test = test_df[target_column]
+            x_test_df = test_df.drop(columns=['RUL'],axis=1)
+            y_test = test_df['RUL']
 
             logging.info("performing Data Transformation ")
+            columns_imp = self.get_important_features(x_train=x_train_df,y_train=y_train)
+            pipeline = self.get_transformation_obj(columns=columns_imp)
+            x_train_arr = pipeline.fit_transform(x_train_df)
+            x_test_arr = pipeline.transform(x_test_df)
 
+            """###############################################################################
             logging.info("Standard Scaling")
             scalar = StandardScaler()
             x_train_arr = scalar.fit_transform(x_train_df)
@@ -83,6 +137,7 @@ class DataTransformation:
             logging.info(f"Important features are {np.array(feature_names)[select_features.get_support()]}")
             x_train_arr = x_train_arr[:,select_features.get_support()]
             x_test_arr = x_test_arr[:,select_features.get_support()]
+            ####################################################"""
 
             logging.info("concating x and y arrays")
 
@@ -105,7 +160,7 @@ class DataTransformation:
             preprocessing_obj_file_path = self.data_transformation_config.preprocessed_object_file_path
 
             logging.info(f"Saving preprocessing object.")
-            save_object(file_path=preprocessing_obj_file_path,obj=svr)
+            save_object(file_path=preprocessing_obj_file_path,obj=pipeline)
 
             data_transformation_artifact = DataTransformationArtifact(is_transformed=True,
             message="Data transformation successfull.",

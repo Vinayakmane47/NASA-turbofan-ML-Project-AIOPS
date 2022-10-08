@@ -27,8 +27,8 @@ class DataValidation:
     def get_train_test_df(self): 
         try : 
             logging.info("Getting train test dataframe") 
-            train_df = pd.read_csv(self.data_ingestion_artifact.train_file_path).drop(columns=['Unnamed: 0'])
-            test_df = pd.read_csv(self.data_ingestion_artifact.test_file_path).drop(columns=['Unnamed: 0'])
+            train_df = pd.read_csv(self.data_ingestion_artifact.train_file_path)
+            test_df = pd.read_csv(self.data_ingestion_artifact.test_file_path)
             return train_df , test_df
         except Exception as e : 
             raise TurboException(e,sys)

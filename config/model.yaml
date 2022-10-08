@@ -1,0 +1,34 @@
+grid_search:
+  class: GridSearchCV
+  module: sklearn.model_selection
+  params:
+    cv: 5
+    verbose: 2
+    
+
+model_selection:
+  module_0:
+    class: LinearRegression
+    module: sklearn.linear_model
+    params:
+      fit_intercept: true
+    search_param_grid:
+      fit_intercept:
+      - true
+      - false
+  module_1:
+    class: SVR
+    module: sklearn.svm
+    params:
+      kernel: 'linear'
+    search_param_grid:
+      kernel:
+      - 'linear'
+      - 'poly'
+      degree:
+      - 2
+      - 3 
+
+  
+
+      

@@ -24,13 +24,13 @@ data_transformation_config:
   transformed_train_dir: train
   transformed_test_dir: test
   preprocessing_dir: preprocessed
-  preprocessed_object_file_name: svr.pkl
+  preprocessed_object_file_name: preprocced.pkl
   
   
 model_trainer_config:
   trained_model_dir: trained_model
   model_file_name: model.pkl
-  base_accuracy: 0.6
+  base_accuracy: 0.5
   model_config_dir: config
   model_config_file_name: model.yaml
 
