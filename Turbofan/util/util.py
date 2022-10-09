@@ -23,14 +23,14 @@ def create_yaml_file(file_path:str , data:dict=None):
         raise TurboException(e,sys)
 
 
-def read_yaml_file(file_path:str): 
+def read_yaml_file(file_path:str)->dict: 
 
     """ 
       This Function will read the yaml files 
     """
     
     try : 
-        with open(file_path , "rb") as file : 
+        with open(file_path , 'rb') as file : 
             return yaml.safe_load(file)
     except Exception as e : 
         raise TurboException(e,sys)

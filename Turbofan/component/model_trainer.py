@@ -22,10 +22,10 @@ class TurboPredictor:
         return self.pred_obj.predict(transform_features)
     
     def __repr__(self): 
-        return f"{type(self.pred_model).__name__}()"
+        return f"{type(self.pred_obj).__name__}()"
     
     def __str__(self): 
-        return f"{type(self.pred_model).__name__}()"
+        return f"{type(self.pred_obj).__name__}()"
 
 
 
@@ -86,7 +86,7 @@ class ModelTrainer:
                                                     X_train=x_train_arr , y_train=y_train_arr , 
                                                     X_test=x_test_arr ,y_test=y_test_arr ,base_accuracy=base_accuracy)
 
-            preproccesing_obj = self.data_transformation_artifact.preprocessed_object_file_path 
+            preproccesing_obj = load_object(file_path=self.data_transformation_artifact.preprocessed_object_file_path)
             model_object = metric_info.model_object 
             trained_model_file_path = self.model_trainer_config.trained_model_file_path 
 

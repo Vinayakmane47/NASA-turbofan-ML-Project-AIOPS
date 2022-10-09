@@ -1,3 +1,4 @@
+from Turbofan.component.model_trainer import TurboPredictor
 from Turbofan.exception import TurboException 
 from Turbofan.logger import logging 
 from Turbofan.entity.config_entity import ModelEvaluationConfig 
@@ -36,25 +37,20 @@ class ModelEvaluation :
 
     def get_best_model(self): 
         try : 
-            logging.info("Getting best Model from model config file ")
-            model = None 
-            model_evaluation_file_path = self.model_evaluation_config.model_evaluation_file_path 
-            ## if path does not exists : 
-            if not os.path.exists(path=model_evaluation_file_path): 
-                create_yaml_file(file_path=model_evaluation_file_path)
-                return model 
+            model = None
+            model_evaluation_file_path = self.model_evaluation_config.model_evaluation_file_path
+
+            if not os.path.exists(model_evaluation_file_path):
+                create_yaml_file(file_path=model_evaluation_file_path,
+                                )
+                return model
             model_eval_file_content = read_yaml_file(file_path=model_evaluation_file_path)
 
-            ## if we read the file for the first time : 
-            if model_eval_file_content is None : 
-                model_eval_file_content = dict()
-            else : 
-                model_eval_file_content = model_eval_file_content 
+            model_eval_file_content = dict() if model_eval_file_content is None else model_eval_file_content
 
-            if BEST_MODEL_KEY not in model_eval_file_content : 
-                return model ## it returns model as None for first time 
-            
-            ## if best model key is found in file i.e for second time 
+            if BEST_MODEL_KEY not in model_eval_file_content:
+                return model
+
             model = load_object(file_path=model_eval_file_content[BEST_MODEL_KEY][MODEL_PATH_KEY])
             return model
 
@@ -64,47 +60,38 @@ class ModelEvaluation :
 
     def update_evaluation_report(self,model_evaluation_artifact:ModelEvaluationArtifact): 
         try : 
-            logging.info("Updating model evaluation config file report")
-            eval_file_path = self.model_evaluation_config.model_evaluation_file_path 
+            eval_file_path = self.model_evaluation_config.model_evaluation_file_path
             model_eval_content = read_yaml_file(file_path=eval_file_path)
+            model_eval_content = dict() if model_eval_content is None else model_eval_content
             
-            # for the first Time 
-            if model_eval_content is None : 
-                model_eval_content = dict()
-            else : 
-                model_eval_content = model_eval_content 
-
-            previous_best_model =None 
-            # for second time : 
-            if BEST_MODEL_KEY in model_eval_content : 
+            
+            previous_best_model = None
+            if BEST_MODEL_KEY in model_eval_content:
                 previous_best_model = model_eval_content[BEST_MODEL_KEY]
-            
-            logging.info(f"previous model eval content {model_eval_content}")
 
+            logging.info(f"Previous eval result: {model_eval_content}")
             eval_result = {
-                    BEST_MODEL_KEY : { 
-                        MODEL_PATH_KEY : model_evaluation_artifact.evaluated_model_path
-                    }
-
+                BEST_MODEL_KEY: {
+                    MODEL_PATH_KEY: model_evaluation_artifact.evaluated_model_path,
+                }
             }
 
-            if previous_best_model is not None : 
-                model_history = {self.model_evaluation_config.time_stamp:previous_best_model}
-                if HISTORY_KEY not in model_eval_content : 
-                    history = {HISTORY_KEY:model_history}
+            if previous_best_model is not None:
+                model_history = {self.model_evaluation_config.time_stamp: previous_best_model}
+                if HISTORY_KEY not in model_eval_content:
+                    history = {HISTORY_KEY: model_history}
                     eval_result.update(history)
-
-                else : 
+                else:
                     model_eval_content[HISTORY_KEY].update(model_history)
 
             model_eval_content.update(eval_result)
-            logging.info(f"Updated eval result {model_eval_content}")
-            create_yaml_file(file_path=eval_file_path,data=model_eval_content)
+            logging.info(f"Updated eval result:{model_eval_content}")
+            create_yaml_file(file_path=eval_file_path, data=model_eval_content)
         except Exception as e : 
             raise TurboException(e,sys)
 
     
-    def initiate_model_evaluation(self): 
+    def initiate_model_evaluation(self)->ModelEvaluationArtifact: 
         try : 
             logging.info("Initiating ModelEvaluation ")
             ## loading train and test dataset from ingestion artifact 
@@ -128,7 +115,7 @@ class ModelEvaluation :
             y_test_arr = np.array(test_df[target_column_name])
 
             ## getting best model from model evaluation file 
-            model = self.get_best_model()
+            model:TurboPredictor = self.get_best_model()
             # for first time the model is None : 
             if model is None : 
                 logging.info(f"Not found any existing model hence we will accept trained model ")
