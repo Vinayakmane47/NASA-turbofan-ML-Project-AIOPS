@@ -10,7 +10,7 @@ from Turbofan.constant import *
 
 
 
-def create_yaml_file(file_path:str , data:dict): 
+def create_yaml_file(file_path:str , data:dict=None): 
     """ 
         This Function create yaml file at specified location
     """
