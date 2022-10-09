@@ -177,6 +177,9 @@ class ModelEvaluation :
         except Exception as e : 
             raise TurboException(e,sys)
 
+    def __del__(self):
+        logging.info(f"{'=' * 20}Model Evaluation log completed.{'=' * 20} ")
+
 
 
 
