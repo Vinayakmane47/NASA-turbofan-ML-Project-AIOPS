@@ -149,10 +149,7 @@ Deployement is completed via github.
 
 ## Result  and Conclusion :
 
-We found out that SVR is the best fitted model for RUL prediction with 
-model accuracy of 67.5%. Train dataset accuracy is around 71 %  
-which is quite good. Knn Model can also able to give good results but it is 
-having less accuracy than SVR.  
+We found out that SVR is the best fitted model for RUL prediction with model accuracy of 67.5%. Train dataset accuracy is around 71 %  which is quite good. Knn Model can also able to give good results but it is having less accuracy than SVR.  
 
 
 
