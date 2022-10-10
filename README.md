@@ -147,9 +147,30 @@ Deployement is completed via github.
 ![Logo](https://blogs.nvidia.com/wp-content/uploads/2020/09/1-MLOps-NVIDIA-invert-final.jpg)
 
 
-## Result  and Conclusion :
 
-We found out that SVR is the best fitted model for RUL prediction with model accuracy of 67.5%. Train dataset accuracy is around 71 %  which is quite good. Knn Model can also able to give good results but it is having less accuracy than SVR.  
+## Models Used for Training : 
+- SVR 
+- KNN 
+- XGBOOST 
+- RANDOM FOREST 
+- NAIVE BAYES 
+- DECISION TREE
+- 
+## Some Features of project : 
+
+- Able to train different models.
+- Able to choose best parameters of models using grid search CV
+- Compare all trained models using `r2_score` and model accuracy. 
+- Select the best model which have best accuracy as well as best parameters. 
+- Compare accuracy score with models which are present in history an select best one. 
+
+
+
+
+## Result  and Conclusion :
+### Application URL : https://nasa-turbofan-ml-project.herokuapp.com/
+
+We found out that SVR is the best fitted model for RUL prediction with model accuracy of 67.5%. Train dataset accuracy is around 71 %  which is quite good. Knn Model can also able to give good results but it is having less accuracy than SVR. We are able to deploy the project in heroku by implementing CI-CD pipeline.  
 
 
 
