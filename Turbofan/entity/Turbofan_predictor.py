@@ -50,22 +50,22 @@ class TurbofanData:
     def get_Turbofan_data_as_dict(self): 
         try : 
             input_data = {
-            "engineNumber": self.engineNumber,
-            "cycleNumber": self.cycleNumber ,
-            "sensor2" : self.sensor2 ,
-           " sensor3" : self.sensor3 ,
-            "sensor4" : self.sensor4 , 
-            "sensor7" : self.sensor7 ,
-            "sensor8" : self.sensor8, 
-            "sensor9" : self.sensor9 ,
-            "sensor11" : self.sensor11,
-            "sensor12" : self.sensor12 ,
-            "sensor13" : self.sensor13,
-            "sensor14" : self.sensor14 ,
-            "sensor15" : self.sensor15,
-            "sensor17" : self.sensor17,
-            "sensor20" : self.sensor20 ,
-            "sensor21" : self.sensor21  }
+            "Engine Number": self.engineNumber,
+            "Current Cycle ": self.cycleNumber ,
+            "Total temperature at LPC outlet(°R )" : self.sensor2 ,
+           "Total temperature at HPC outlet(°R )" : self.sensor3 ,
+            "Total temperature at LPT outlet(°R )" : self.sensor4 , 
+            "Total pressure at HPC outlet(psia)" : self.sensor7 ,
+            "Physical fan speed(rpm)" : self.sensor8, 
+            "Physical core speed (rpm)" : self.sensor9 ,
+            "Static pressure at HPC outlet (psia)" : self.sensor11,
+            "Ratio of fuel flow to Ps30 (pps/psi)" : self.sensor12 ,
+            "Corrected fan speed (rpm)" : self.sensor13,
+            "Corrected core speed(rpm)" : self.sensor14 ,
+            "Bypass Ratio" : self.sensor15,
+            "Bleed Enthalpy" : self.sensor17,
+            "HPT coolant bleed(lbm/s )" : self.sensor20 ,
+            "LPT coolant bleed (lbm/s)" : self.sensor21  }
 
             return input_data
 
