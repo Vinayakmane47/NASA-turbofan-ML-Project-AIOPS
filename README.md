@@ -1,6 +1,9 @@
 
 # NASA Turbofan Engine RUL Prediction
+### Application URL : https://nasa-turbofan-ml-project.herokuapp.com/
 
+
+## Introduction : 
 Turbofan engine is a highly complex and precise thermal machinery, 
 which is the “heart” of the aircraft.
 About 60% of the total faults of the aircraft are related to 
@@ -27,7 +30,7 @@ Data sets consists of multiple multivariate time series. Each data set is furthe
 
 The engine is operating normally at the start of each time series, and develops a fault at some point during the series. In the training set, the fault grows in magnitude until system failure. In the test set, the time series ends some time prior to system failure.The objective  is to predict the number of remaining operational cycles before failure in the test set, i.e., the number of operational cycles after the last cycle that the engine will continue to operate. Also provided a vector of true Remaining Useful Life (RUL) values for the test data
 
-### Dataset: 
+## Dataset: 
 Datasets include simulations of multiple turbofan engines over time, each row contains the following information:
 1. Engine unit number
 2. cycles
@@ -168,7 +171,7 @@ Deployement is completed via github.
 
 
 ## Result  and Conclusion :
-### Application URL : https://nasa-turbofan-ml-project.herokuapp.com/
+
 
 We found out that SVR is the best fitted model for RUL prediction with model accuracy of 67.5%. Train dataset accuracy is around 71 %  which is quite good. Knn Model can also able to give good results but it is having less accuracy than SVR. We are able to deploy the project in heroku by implementing CI-CD pipeline.  
 
