@@ -25,7 +25,7 @@ class TurbofanData:
         sensor17 : float ,
         sensor20 : float ,
         sensor21 : float ,
-        RUL : int = None ) -> None:
+        RUL : int = None ) :
         try : 
             self.engineNumber = engineNumber,
             self.cycleNumber = cycleNumber ,
@@ -50,22 +50,22 @@ class TurbofanData:
     def get_Turbofan_data_as_dict(self): 
         try : 
             input_data = {
-            "engineNumber": [self.engineNumber],
-            "cycleNumber": [self.cycleNumber] ,
-            "sensor2" : [self.sensor2] ,
-           " sensor3" : [self.sensor3] ,
-            "sensor4" : [self.sensor4] , 
-            "sensor7" : [self.sensor7] ,
-            "sensor8" : [self.sensor8], 
-            "sensor9" : [self.sensor9] ,
-            "sensor11" : [self.sensor11],
-            "sensor12" : [self.sensor12] ,
-            "sensor13" : [self.sensor13],
-            "sensor14" : [self.sensor14] ,
-            "sensor15" : [self.sensor15],
-            "sensor17" : [self.sensor17],
-            "sensor20" : [self.sensor20] ,
-            "sensor21" : [self.sensor21]  }
+            "engineNumber": self.engineNumber,
+            "cycleNumber": self.cycleNumber ,
+            "sensor2" : self.sensor2 ,
+           " sensor3" : self.sensor3 ,
+            "sensor4" : self.sensor4 , 
+            "sensor7" : self.sensor7 ,
+            "sensor8" : self.sensor8, 
+            "sensor9" : self.sensor9 ,
+            "sensor11" : self.sensor11,
+            "sensor12" : self.sensor12 ,
+            "sensor13" : self.sensor13,
+            "sensor14" : self.sensor14 ,
+            "sensor15" : self.sensor15,
+            "sensor17" : self.sensor17,
+            "sensor20" : self.sensor20 ,
+            "sensor21" : self.sensor21  }
 
             return input_data
 
@@ -76,6 +76,7 @@ class TurbofanData:
         try : 
             Turbofan_data = self.get_Turbofan_data_as_dict() 
             dataframe = pd.DataFrame(Turbofan_data)
+            return dataframe
         except Exception as e : 
             raise TurboException(e,sys) from e 
 

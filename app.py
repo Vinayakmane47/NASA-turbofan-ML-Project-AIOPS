@@ -106,7 +106,7 @@ def predict():
     }
 
     if request.method == 'POST':
-        engineNumber = float(request.form['engineNumber'])
+        engineNumber = int(request.form['engineNumber'])
         cycleNumber =  int(request.form['cycleNumber']) 
         sensor2 = float(request.form['sensor2']) 
         sensor3 = float(request.form['sensor3']) 
@@ -141,12 +141,12 @@ def predict():
             sensor20 = sensor20 ,
             sensor21 = sensor21 )
 
-        Turbofan_df = Turbofan_data.get_housing_input_data_frame()
+        Turbofan_df = Turbofan_data.get_Turbofan_data_dataframe()
         Turbofan_predictor = TurbofanPredictor(model_dir=MODEL_DIR)
 
         RUL = Turbofan_predictor.predict(X=Turbofan_df)
         context = {
-            TURBOFAN_DATA_KEY: Turbofan_data.get_housing_data_as_dict(),
+            TURBOFAN_DATA_KEY: Turbofan_data.get_Turbofan_data_as_dict(),
             RUL_VALUE_KEY: RUL,
         }
         return render_template('predict.html', context=context)
