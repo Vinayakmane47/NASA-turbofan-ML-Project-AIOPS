@@ -75,6 +75,7 @@ Datasets include simulations of multiple turbofan engines over time, each row co
 - `HEROKU_API_KEY`
 - `HEROKU_APP_NAME`
 - `HEROKU_EMAIL`
+
 Now type this commands : 
 ```bash
   $ git add . 
@@ -153,16 +154,22 @@ Deployement is completed via github.
 
 
 ## Models Used for Training : 
-- SVR 
-- KNN 
-- XGBOOST 
-- RANDOM FOREST 
-- NAIVE BAYES 
-- DECISION TREE
-- 
-## Some Features of project : 
 
-- Able to train different models.
+| Model             | Accuracy        |
+| ---------------   | --------------- |
+| Linear Regression           |64.44 %  |
+| SVR                         | 67.59%  |
+| Random Forest Regressor     | 49.20 %   |
+| XGBoost regressor           | 9 %  |
+| KNN Regressor                        | 69.28 %  |
+| GNB Regressor              | -70 %  |
+| SVR Regressor (Fine Tuned)    | 72.54 %  |
+
+
+
+## Key Features of project : 
+
+- Able to train different models at one click  .
 - Able to choose best parameters of models using grid search CV
 - Compare all trained models using `r2_score` and model accuracy. 
 - Select the best model which have best accuracy as well as best parameters. 
@@ -173,7 +180,7 @@ Deployement is completed via github.
 
 ## Result  and Conclusion :
 
-We found out that SVR is the best fitted model for RUL prediction with model accuracy of 67.5%. Train dataset accuracy is around 71 %  which is quite good. Knn Model can also able to give good results but it is having less accuracy than SVR. We are able to deploy the project in heroku by implementing CI-CD pipeline.  
+We found out that SVR is the best fitted model for RUL prediction with model accuracy of 72.54%. Train dataset accuracy is around 71.95% %  which is quite good. Knn Model can also able to give good results but it is having less accuracy than SVR. We are able to deploy the project in heroku by implementing CI-CD pipeline.  
 
 ![RUL_IMG](https://user-images.githubusercontent.com/103372852/195010802-29a4b5e2-40dd-4a74-83f8-9623663b7d10.png)
 
