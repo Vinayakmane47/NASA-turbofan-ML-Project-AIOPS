@@ -100,41 +100,62 @@ Datasets include simulations of multiple turbofan engines over time, each row co
 |── setup.py
 ```
 
-## MLOPS Pipeline Overview : 
+## MLOPS Pipeline Used For this Project : 
 ![Logo](https://blogs.nvidia.com/wp-content/uploads/2020/09/1-MLOps-NVIDIA-invert-final.jpg)
 
-## Models Used for Training : 
+
+
+## Key Features of project : 
+
+- Implemented **MLOPS**  end to end Pipeline for executing code in one click 
+- Implemented Modular Coding standards 
+- Deployed web app on **Heruku** platform (it involves some cost now , so user cant able to use it , but i pasted a video demo in this card ) 
+- Project is able to train different models at one click  .
+- Project is able to choose best parameters of models using grid search CV 
+- Compare all trained models using `r2_score` and model accuracy. 
+- Select the best model which have best accuracy as well as best parameters. 
+- Compare accuracy score with models which are present in history and select best one between two. 
+- 
+
+## Expermentations : 
+
+#### 1. Linear Regression (without feature engineering) : 
+
+###### Note - Model Accuracy -  Harmonic Mean of r2_score_train and r2_score_test
+- first i started with Linear regression with 16 features. I got  **Model Accuracy - 51.784%**. I clipped RUL to 125 upper limit, which means i converted all values of RUL  which are greater than 125 to 125 . This hypothesis is justifiable because maintenance team need only life of machine(in days or weeks)   so they can schedule manintenance. So with this hypothesis i got **Model Accuracy - 73.745%**
+
+#### 2. SVR (With feature Engineering) : 
+- In this experiment i created polynomial features using sklearn library . so my **16 features** became **153 Features** and i trained a SVR regressor on this data . I got **Model Accuracy - 79.619%** 
+- Then  i selected best feature out of 153 features using `from sklearn.feature_selection import SelectFromModel` function from sklearn library. I trained SVR on 40 best features and got **Model Accuracy - 79.623%** , Accuracy is improved by **0.04 %** 
+
+#### 3. Trained Multiple Models : 
+- I trained multiple modles which are listed below on  the new data with **40 features**. 
+
+#### 4. Grid Search CV : 
+- I performed Grid search to  find best features from SVR and KNN . 
+
+### Models Used for Training : 
 
 
 | Model | Accuracy   | R2_Score-train | R2_Score-test |
 |----------|----------|----------|----------|
 | LinearRegressor         |  79.800% |  82.824% |  76.988%  |
 | SVR(kernel='linear')    | 79.623% |  82.744% | 76.729% |
-| RandomForestRegressor   | 84.059%   | 98.787%  | 73.153% |
+| RandomForestRegressor   | **84.059%**   | **98.787%**  | 73.153% |
 | XGBRegressor            |  74.686% | 98.987% | 59.965% |
-| KNeighborsRegressor     |  81.936% | 90.380% | 74.934% |
+| **KNeighborsRegressor**     |  **81.936%** | **90.380%** | **74.934%** |
 | GaussianNB              | 70.836% | 71.726%| 69.968% |
 | SGDRegressor            | 79.794% |  82.653% | 77.126% |
 | DecisionTreeRegressor   | 72.373% | 100.000% | 56.706% |
-|  AdaBoostRegressor      | 73.263% | 74.319% | 72.236% |
-| KNeighborsRegressor(fine-tuned) | 81.936% | 90.380% | 74.934% |
-| SVR(fine-tuned)        | 79.623% | 82.744% |  76.729% |
-
-
-## Key Features of project : 
-
-- Able to train different models at one click  .
-- Able to choose best parameters of models using grid search CV
-- Compare all trained models using `r2_score` and model accuracy. 
-- Select the best model which have best accuracy as well as best parameters. 
-- Compare accuracy score with models which are present in history an select best one. 
-
-
+| AdaBoostRegressor      | 73.263% | 74.319% | 72.236% |
+| **KNeighborsRegressor(fine-tuned)** | **81.936%** | **90.380%** | **74.934%** |
+| **SVR(fine-tuned)**        | **79.623%** | **82.744%** |  **76.729%** |
 
 
 ## Result  and Conclusion :
 
-We found out that SVR is the best fitted model for RUL prediction with model accuracy of 72.54%. Train dataset accuracy is around 71.95% %  which is quite good. Knn Model can also able to give good results but it is having less accuracy than SVR. We are able to deploy the project in heroku by implementing CI-CD pipeline.  
+I found that  **KNeighborsRegressor** is the best fitted model for RUL prediction with ***Model accuracy - 81.936%** , **R2_Score Train -**90.380%** and  **R2_Score_test - 74.934%**. **Random Forest** also giving good results ,i.e. **Model Accuracy- 84.059%**  ,but it is overfitting data so I finalize **KNN** as best fitted model . 
+
 ![image](https://github.com/Vinayakmane47/NASA-turbofan-ML-Project-AIOPS/assets/103372852/5947fa96-9303-478e-ac6a-84c8ad838bbd)
 
 
