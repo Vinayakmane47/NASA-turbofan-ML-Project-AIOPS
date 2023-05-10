@@ -49,42 +49,7 @@ Datasets include simulations of multiple turbofan engines over time, each row co
  
 
 
-## Steps : 
-
-1. Create Github repo with `readme.md` ,`.gitignore`. 
-2. Clone this repo in local system and start coding in `VS-Code`. 
- 
-```bash
-  $ git clone 
-  $ code .
-```
-3. Create Conda Enviornment 
-```bash
-  $ conda create -p venv python == 3.7 -y 
-  $ conda activate venv/ 
-
-```
-4. create `requirements.txt` , `app.py ` and `setup.py` file. 
-5. Create Heroku application. 
-6. Setup CI-CD pipeline : 
-  - create `Dockerfile` 
-  - create `.dockerignore` file 
-  - create `.github\workflow` folders and add `main.yaml` file
-7. For CI-CD pipeline we need to add Enviornmental variables in Github 
-   The following variables can be added in github secrets : 
-- `HEROKU_API_KEY`
-- `HEROKU_APP_NAME`
-- `HEROKU_EMAIL`
-
-Now type this commands : 
-```bash
-  $ git add . 
-  $ git commit -m "first commit" 
-  $ git push origin main 
-```
-Deployement is completed via github. 
-
-8. Create Folder structure like this in `VS-CODE` : 
+## Folder Structure  Used for this Project : 
 ```bash
 
 .github
@@ -135,36 +100,24 @@ Deployement is completed via github.
 |── setup.py
 ```
 
-9. Dockerfile contains Following content: 
-```bash
-  FROM python:3.7
-  COPY . /app
-  WORKDIR /app
-  RUN pip install -r requirements.txt
-  EXPOSE $PORT
-  CMD gunicorn --workers=4 --bind 0.0.0.0:$PORT app:app
-
-```
-
-10. Start writing each module and package. 
-
 ## MLOPS Pipeline Overview : 
 ![Logo](https://blogs.nvidia.com/wp-content/uploads/2020/09/1-MLOps-NVIDIA-invert-final.jpg)
 
-
-
 ## Models Used for Training : 
 
-| Model             | Accuracy        |
-| ---------------   | --------------- |
-| Linear Regression           |64.44 %  |
-| SVR                         | 67.59%  |
-| Random Forest Regressor     | 49.20 %   |
-| XGBoost regressor           | 9 %  |
-| KNN Regressor                        | 69.28 %  |
-| GNB Regressor              | -70 %  |
-| SVR Regressor (Fine Tuned)    | 72.54 %  |
-
+| Model                   | Accuracy   | R2_Score-train | R2_Score-test |
+|----------               |----------  |----------      |------     ----|
+| LinearRegressor         |  79.800% |  82.824% |  76.988%  |
+| SVR(kernel='linear')    | 79.623% |  82.744% | 76.729% |
+| RandomForestRegressor   | 84.059%   | 98.787%  | 73.153% |
+| XGBRegressor            |  74.686% | 98.987% | 59.965% |
+| KNeighborsRegressor     |  81.936% | 90.380% | 74.934% |
+| GaussianNB              | 70.836% | 71.726%| 69.968% |
+| SGDRegressor            | 79.794% |  82.653% | 77.126% |
+| DecisionTreeRegressor   | 72.373% | 100.000% | 56.706% |
+|  AdaBoostRegressor      | 73.263% | 74.319% | 72.236% |
+| KNeighborsRegressor(fine-tuned) | 81.936% | 90.380% | 74.934% |
+| SVR(fine-tuned)        | 79.623% | 82.744% |  76.729% |
 
 
 ## Key Features of project : 
@@ -181,8 +134,8 @@ Deployement is completed via github.
 ## Result  and Conclusion :
 
 We found out that SVR is the best fitted model for RUL prediction with model accuracy of 72.54%. Train dataset accuracy is around 71.95% %  which is quite good. Knn Model can also able to give good results but it is having less accuracy than SVR. We are able to deploy the project in heroku by implementing CI-CD pipeline.  
+![image](https://github.com/Vinayakmane47/NASA-turbofan-ML-Project-AIOPS/assets/103372852/5947fa96-9303-478e-ac6a-84c8ad838bbd)
 
-![RUL_IMG](https://user-images.githubusercontent.com/103372852/195010802-29a4b5e2-40dd-4a74-83f8-9623663b7d10.png)
 
 
 
