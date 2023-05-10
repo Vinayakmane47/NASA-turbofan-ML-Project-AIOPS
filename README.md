@@ -1,6 +1,6 @@
 
 # NASA Turbofan Engine RUL Prediction
-### Application URL : https://nasa-turbofan-ml-project.herokuapp.com/ - (Heruku have done monetization so it will not open , but user can look demo link which i pasted below) 
+### Application URL : https://nasa-turbofan-ml-project.herokuapp.com/ - (Heroku have done monetization so it will not open , but user can look demo link which i pasted below) 
 ### Demo Link of Application - https://youtu.be/WK7NbTI4pNk
 
 
