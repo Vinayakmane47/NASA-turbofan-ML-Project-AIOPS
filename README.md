@@ -1,7 +1,7 @@
 
 # NASA Turbofan Engine RUL Prediction
-### Application URL : https://nasa-turbofan-ml-project.herokuapp.com/
-### Demo Link - https://youtu.be/WK7NbTI4pNk
+### Application URL : https://nasa-turbofan-ml-project.herokuapp.com/ - (Heruku have done monetization so it will not open , but user can look demo link which i pasted below) 
+### Demo Link of Application - https://youtu.be/WK7NbTI4pNk
 
 
 ## Introduction : 
@@ -109,7 +109,7 @@ Datasets include simulations of multiple turbofan engines over time, each row co
 
 - Implemented **MLOPS**  end to end Pipeline for executing code in one click 
 - Implemented Modular Coding standards 
-- Deployed web app on **Heruku** platform (it involves some cost now , so user cant able to use it , but i pasted a video demo in this card ) 
+- Deployed web app on **Heruku** platform (it involves some cost now , so user cant able to use it) 
 - Project is able to train different models at one click  .
 - Project is able to choose best parameters of models using grid search CV 
 - Compare all trained models using `r2_score` and model accuracy. 
