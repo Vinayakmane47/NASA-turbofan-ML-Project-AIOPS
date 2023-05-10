@@ -105,8 +105,9 @@ Datasets include simulations of multiple turbofan engines over time, each row co
 
 ## Models Used for Training : 
 
-| Model                   | Accuracy   | R2_Score-train | R2_Score-test |
-|----------               |----------  |----------      |------     ----|
+
+| Model | Accuracy   | R2_Score-train | R2_Score-test |
+|----------|----------|----------|----------|
 | LinearRegressor         |  79.800% |  82.824% |  76.988%  |
 | SVR(kernel='linear')    | 79.623% |  82.744% | 76.729% |
 | RandomForestRegressor   | 84.059%   | 98.787%  | 73.153% |
