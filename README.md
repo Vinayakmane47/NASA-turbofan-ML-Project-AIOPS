@@ -45,6 +45,7 @@ Datasets include simulations of multiple turbofan engines over time, each row co
 - Create environment - `$ conda create -n env python==3.7 -y` 
 - install requirements - `$ pip install -r requirements.txt` 
 - Run project - `$ python app.py` 
+- enter in browser - `$ localhost:5000`
 
 
 ## Resources : 
