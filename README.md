@@ -38,8 +38,12 @@ Datasets include simulations of multiple turbofan engines over time, each row co
 3. Three operational settings
 4. 21 sensor readings 
 
+## How to Use this Project : 
 
-
+- Clone this repo - `$ git clone ----` 
+- Create environment - `$ conda create -n env python==3.7 -y` 
+- install requirements - `$ pip install -r requirements.txt` 
+- Run project - `$ python app.py` 
 
 
 ## Resources : 
