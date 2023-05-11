@@ -1,6 +1,7 @@
 
 # NASA Turbofan Engine RUL Prediction
-### Application URL : https://nasa-turbofan-ml-project.herokuapp.com/ - (Heroku have done monetization so it will not open , but user can look demo link which i pasted below) 
+### Application URL : https://nasa-turbofan-ml-project.herokuapp.com/ - 
+(Heroku have done monetization so it will not open , but user can look demo link which i pasted below) 
 ### Demo Link of Application - https://youtu.be/WK7NbTI4pNk
 
 
@@ -40,7 +41,7 @@ Datasets include simulations of multiple turbofan engines over time, each row co
 
 ## How to Use this Project : 
 
-- Clone this repo - `$ git clone ----` 
+- Clone this repo - `$ git clone https://github.com/Vinayakmane47/NASA-turbofan-ML-Project-AIOPS` 
 - Create environment - `$ conda create -n env python==3.7 -y` 
 - install requirements - `$ pip install -r requirements.txt` 
 - Run project - `$ python app.py` 
